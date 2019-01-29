@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { FilmService } from "../../services/film.service";
 
 @Component({
   selector: "app-nav-bar",
@@ -7,10 +6,7 @@ import { FilmService } from "../../services/film.service";
   styleUrls: ["./nav-bar.component.less"]
 })
 export class NavBarComponent implements OnInit {
-  public films = [];
-  private f = "tt0307987";
-
-  constructor(private _filmService: FilmService) {}
+  constructor() {}
 
   ngOnInit() {
     console.log("app-nav-bar");

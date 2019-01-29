@@ -1,0 +1,16 @@
+<nav aria-label="...">
+  <ul class="pagination pagination-sm">
+    <li class="page-item">
+      <a class="page-link" *ngIf="page !== 1">{{ page - 1 }}</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link">{{ page }}</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link">{{ page + 1 }}</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" *ngIf="page === 1">{{ page + 2 }}</a>
+    </li>
+  </ul>
+</nav>
