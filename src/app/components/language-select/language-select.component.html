@@ -1,0 +1,11 @@
+<div class="form-group m-2">
+  <select
+    class="form-control"
+    [formControl]="this._langService.langSelect"
+    (change)="this.changeLang()"
+  >
+    <option *ngFor="let lang of this.langs" [value]="lang.value">
+      {{ lang.viewValue }}
+    </option>
+  </select>
+</div>

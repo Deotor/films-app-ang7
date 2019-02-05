@@ -1,26 +1,77 @@
 <main>
-  <ul class="list-group list-group-flush">
-    <li
-      class="list-group-item"
-      style="max-height: 300px;"
-      *ngFor="let film of films?.results; index as i"
-    >
-      <div class="flex-row">
-        <div class="film-poster">
-          <img
-            class="film-poster-img"
-            src="{{ 'http://image.tmdb.org/t/p/w185/' + film.poster_path }}"
-          />
-          <span class=""></span>
-        </div>
-
-        <div class="flex-column">
-          <p class="m-2">{{ film.title }}</p>
-          <p class="m-2">{{ film.release_date }}</p>
-          <p class="m-2">{{ film.overview }}</p>
-        </div>
-      </div>
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        (click)="this.getData('movie')"
+        [ngClass]="{
+          active:
+            this._filmService.apiData.filmType == 'movie' &&
+            !this._filmService.searchMode
+        }"
+        >{{ this._langService.data.movie }}</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        (click)="this.getData('tv')"
+        [ngClass]="{
+          active:
+            this._filmService.apiData.filmType == 'tv' &&
+            !this._filmService.searchMode
+        }"
+        >{{ this._langService.data.tv }}</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link"
+        [ngClass]="{ active: this._filmService.searchMode }"
+        *ngIf="this._filmService.searchMode"
+        >{{ this._langService.data.searchResults }}</a
+      >
     </li>
   </ul>
-  <app-pagination [page]="films?.page"></app-pagination>
+  <div class="films-block" *ngIf="this._filmService.isLoaded">
+    <ul class="list-group list-group-flush">
+      <li
+        class="list-group-item"
+        style="max-height: 300px;"
+        *ngFor="let film of this._filmService.films?.results; index as i"
+      >
+        <div class="flex-row">
+          <div class="film-poster">
+            <img
+              class="film-poster-img"
+              src="{{ 'http://image.tmdb.org/t/p/w185/' + film.poster_path }}"
+            />
+            <span class=""></span>
+          </div>
+
+          <div class="flex-column">
+            <p class="m-2">
+              <b>{{ film?.title }} {{ film?.name }}</b>
+            </p>
+            <p class="m-2">{{ film.release_date }}</p>
+            <p class="m-2">{{ film.overview }}</p>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <app-pagination
+      [page]="this._filmService.films?.page"
+      *ngIf="this._filmService.films?.results.length !== 0"
+    ></app-pagination>
+  </div>
+  <div class="spinners" *ngIf="!this._filmService.isLoaded">
+    <div class="spinner-grow text-primary" role="status"></div>
+    <div class="spinner-grow text-primary" role="status"></div>
+    <div class="spinner-grow text-primary" role="status"></div>
+    <div class="spinner-grow text-primary" role="status"></div>
+    <div class="spinner-grow text-primary" role="status"></div>
+  </div>
+  <div *ngIf="this._filmService.films?.results.length === 0">
+    {{ this._langService.data.searchNone }}
+  </div>
 </main>

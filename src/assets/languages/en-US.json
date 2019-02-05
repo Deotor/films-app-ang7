@@ -1,0 +1,11 @@
+{
+  "home": "Home",
+  "movieApp": "MovieAPP",
+  "search": "Search",
+  "login": "Login",
+  "logout": "Logout",
+  "movie": "Movie",
+  "tv": "TV",
+  "searchResults": "Search results",
+  "searchNone": "found nothing"
+}

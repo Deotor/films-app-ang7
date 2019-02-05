@@ -1,0 +1,11 @@
+{
+  "home": "Домашняя",
+  "movieApp": "MovieAPP",
+  "search": "Найти",
+  "login": "Войти",
+  "logout": "Выйти",
+  "movie": "Фильмы",
+  "tv": "Сериалы",
+  "searchResults": "Рузультаты поиска",
+  "searchNone": "Ничего не нашли"
+}

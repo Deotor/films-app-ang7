@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FilmService } from "../../services/film.service";
-import { IFilms } from "../../models/iFilms";
+import { LanguageService } from "../../services/language.service";
 
 @Component({
   selector: "app-home-page",
@@ -8,15 +8,28 @@ import { IFilms } from "../../models/iFilms";
   styleUrls: ["./home-page.component.less"]
 })
 export class HomePageComponent implements OnInit {
-  public films: IFilms;
-
-  constructor(private _filmService: FilmService) {}
+  constructor(
+    private _filmService: FilmService,
+    private _langService: LanguageService
+  ) {}
 
   ngOnInit() {
-    console.log("app-home-page");
     this._filmService.getFilms().subscribe(data => {
-      this.films = data;
-      console.log(this.films);
+      this._filmService.films = data;
+      this._filmService.isLoaded = true;
+      console.log(this._filmService.films);
+    });
+  }
+
+  getData(filmType: string) {
+    this._filmService.searchMode = false;
+    console.log("getData");
+    this._filmService.apiData.page = 1;
+    this._filmService.changeFilmType(filmType);
+    this._filmService.getFilms().subscribe(data => {
+      this._filmService.films = data;
+      this._filmService.isLoaded = true;
+      console.log(this._filmService.films);
     });
   }
 }

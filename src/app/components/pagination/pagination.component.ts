@@ -13,11 +13,24 @@ export class PaginationComponent implements OnInit {
 
   ngOnInit() {}
 
-  makeCurrent(page: number) {
-    return (
-      '<span class="page-link"> ' +
-      page +
-      ' <span class="sr-only">(current)</span> </span>'
-    );
+  changePage(pageN: number) {
+    console.log("changePage");
+    if (this._filmService.searchMode) {
+      this._filmService.changePage(pageN);
+      this._filmService
+        .search(this._filmService.searchInput.value)
+        .subscribe(data => {
+          this._filmService.films = data;
+          this._filmService.isLoaded = true;
+          console.log(this._filmService.films);
+        });
+    } else {
+      this._filmService.changePage(pageN);
+      this._filmService.getFilms().subscribe(data => {
+        this._filmService.films = data;
+        this._filmService.isLoaded = true;
+        console.log(this._filmService.films);
+      });
+    }
   }
 }

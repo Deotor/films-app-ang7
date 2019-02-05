@@ -1,7 +1,17 @@
 <button
-  class="btn btn-outline-primary my-2 my-sm-0 ml-5"
+  *ngIf="!this._accountService.checkIsLoggedIn()"
+  class="btn btn-outline-success my-2 my-sm-0 ml-5"
   type="button"
-  (click)="this._accountService.approveTokenID()"
+  (click)="this.approveTokenID()"
 >
-  Login
+  {{ this._langService.data.login }}
+</button>
+
+<button
+  *ngIf="this._accountService.checkIsLoggedIn()"
+  class="btn btn-outline-warning my-2 my-sm-0 ml-5"
+  type="button"
+  (click)="this._accountService.logout()"
+>
+  {{ this._langService.data.logout }}
 </button>

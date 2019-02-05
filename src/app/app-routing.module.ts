@@ -4,7 +4,8 @@ import { HomePageComponent } from "./components/home-page/home-page.component";
 
 const routes: Routes = [
   { path: "", redirectTo: "/home-page", pathMatch: "full" },
-  { path: "home-page:request_token", component: HomePageComponent },
+  { path: "login", component: HomePageComponent },
+  { path: "login/:request_token", component: HomePageComponent },
   { path: "home-page", component: HomePageComponent }
 ];
 

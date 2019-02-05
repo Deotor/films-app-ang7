@@ -1,16 +1,42 @@
 <nav aria-label="...">
   <ul class="pagination pagination-sm">
     <li class="page-item">
-      <a class="page-link" *ngIf="page !== 1">{{ page - 1 }}</a>
+      <a class="page-link" *ngIf="page > 2" (click)="this.changePage(1)"
+        >First page</a
+      >
     </li>
     <li class="page-item">
+      <a
+        class="page-link"
+        *ngIf="page !== 1"
+        (click)="this.changePage(page - 1)"
+        >{{ page - 1 }}</a
+      >
+    </li>
+    <li class="page-item active">
       <a class="page-link">{{ page }}</a>
     </li>
     <li class="page-item">
-      <a class="page-link">{{ page + 1 }}</a>
+      <a
+        class="page-link"
+        (click)="this.changePage(page + 1)"
+        *ngIf="
+          this._filmService.films.total_pages > 1 &&
+          page < this._filmService.films.total_pages - 1
+        "
+        >{{ page + 1 }}</a
+      >
     </li>
     <li class="page-item">
-      <a class="page-link" *ngIf="page === 1">{{ page + 2 }}</a>
+      <a
+        class="page-link"
+        (click)="this.changePage(page + 2)"
+        *ngIf="
+          this._filmService.films.total_pages > 2 &&
+          page < this._filmService.films.total_pages - 2
+        "
+        >{{ page + 2 }}</a
+      >
     </li>
   </ul>
 </nav>

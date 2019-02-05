@@ -1,4 +1,4 @@
 export interface ISessionID {
   success: boolean;
-  request_token: string;
+  session_id: string;
 }
