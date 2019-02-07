@@ -14,6 +14,7 @@ import { HomePageComponent } from "./components/home-page/home-page.component";
 import { PaginationComponent } from "./components/pagination/pagination.component";
 import { LoginComponent } from "./components/login/login.component";
 import { LanguageSelectComponent } from './components/language-select/language-select.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { LanguageSelectComponent } from './components/language-select/language-s
     HomePageComponent,
     PaginationComponent,
     LoginComponent,
-    LanguageSelectComponent
+    LanguageSelectComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
